@@ -4,14 +4,52 @@
 </div>
 
 <div class="grid">
-    <div class="col md-6">
+    <div class="col-6">
         <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
-            Saludos {{nombre}}, Espero que estés content{{genero | i18nSelect: generoMap}}.
+            <p>
+                Saludos {{nombre}}, Espero que estés content{{genero | i18nSelect: generoMap}}.
+            </p>
+            <button pButton type="button" label="Cambiar nombre" class="p-button-primary" (click)="cambiarNombre()"></button>
+           
         </p-fieldset>
     </div>
-    <div class="col md-6">
+    <div class="col-6">
         <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
-            Actualmente tenemos un cliente esperando
+            <p>
+                Actualmente {{clientes.length | i18nPlural:clientesMap}} esperando
+            </p>
+            <button pButton type="button" label="Borrar cliente" class="p-button-danger" (click)="borrarCliente()"></button>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6">
+        <p-fieldset legend="Slice Pipe" [toggleable]="true">
+          
+                <strong>Original</strong>
+                <pre>{{clientes}}</pre>
+                <strong>slice:0:2</strong>
+                <pre>{{clientes | slice:0:2}}</pre>
+                <strong>slice:3:5</strong>
+                <pre>{{clientes | slice:3:5}}</pre>
+           
+        </p-fieldset>
+    </div>
+
+    <div class="col-6">
+        <p-fieldset legend="KeyValue Pipe" [toggleable]="true">
+            <ul>
+                <li *ngFor="let item of persona | keyvalue">
+                    <strong>{{item.key | titlecase}}:</strong> {{item.value}}
+                </li>
+            </ul>
+            
+        </p-fieldset>
+    </div>
+
+    <div class="col-6">
+        <p-fieldset legend="Json Pipe" [toggleable]="true">
+            <pre>{{persona | json}}</pre>
+            
         </p-fieldset>
     </div>
 </div>
